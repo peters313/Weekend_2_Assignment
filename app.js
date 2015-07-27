@@ -3,7 +3,7 @@ console.log('We are up and running!');
 var searchUser;
 
 $(document).ready(function(){
-	$('body').on('click', '.submit', function(){
+	$('body').on('click', '.submit', function(event){
 			event.preventDefault();
 			searchUser = $('.search').val();
 			console.log($('.search'));
@@ -12,8 +12,13 @@ $(document).ready(function(){
 		});
 	});
 
-function callback(data){
+function callBack(data){
 	console.log(data.name);
+	$('.results').html("");
+	$('.results').append("<img src='"+data.avatar_url+"' />");
+	$('.results').append("<p class='info'>User Login: "+data.login+"</p>");
+	$('.results').append("<p class='info'>Link to Github Page: <a href='"+data.html_url+"'target='blank'>"+data.html_url+"</a></p>");
+	$('.results').append("<p class='info'>Bio Information: "+data.bio+"</p>");
 }
 
 function search(query){
